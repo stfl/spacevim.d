@@ -1,0 +1,221 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2017 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+  colorscheme = "NeoSolarized"
+  background = "dark"
+
+  enable_guicolors = false
+# Disable statusline separator, if you want to use other value, please
+# install nerd fonts
+  statusline_separator = "arrow"
+  statusline_inactive_separator = "arrow"
+  buffer_index_type = 4
+  enable_tabline_filetype_icon = true
+  enable_statusline_display_mode = true
+
+  auto_disable_touchpad = false
+
+  # filemanager = "nerdtree"
+  enable_vimfiler_gitstatus = true
+
+  bootstrap_before = "myconfig#before"
+  bootstrap_before = "bootstrap#before"
+  bootstrap_after  = "bootstrap#after"
+  # bootstrap_after  = "myutil#after"
+
+  enable_neomake = false
+  enable_ale = true
+
+  disabled_plugins = [
+    # "LanguageClient-neovim",
+    "vim-emoji",
+    "gruvbox",
+    "molokai",
+    "nord-vim",
+    "onedark.vim",
+    "tabular",
+    "neco-look",
+    "Clamp",
+  ]
+
+
+######## ------------- Basics
+
+[[layers]]
+  name = "default"
+
+[[layers]]
+  name = "edit"
+
+[[custom_plugins]]
+  name = 'junegunn/vim-easy-align'
+  on_map = '<Plug>(LiveEasyAlign)'
+            # '<Plug>(EasyAlign)']
+  merged = false
+
+[[layers]]
+  name = 'colorscheme'
+
+[[layers]]
+  name = 'denite'
+
+[[custom_plugins]]
+  name = 'raghur/fruzzy'
+  hook_post_update = 'call fruzzy#install()'
+  on_cmd = 'Denite'
+  merged = false
+
+[[custom_plugins]]
+  name = 'ujihisa/neco-look'
+  if = "executable('look')"
+  # on_if = '&spell'
+  on_ft = ['markdown', 'pandoc', 'tex', 'latex', 'text']
+  merged = false
+
+
+# [[layers]]
+  # name = 'fzf'
+
+[[layers]]
+  name = 'shell'
+  default_position = 'bottom'
+  default_height = 30
+
+[[layers]]
+  name = 'tools'
+
+[[layers]]
+  name = "VersionControl"
+
+[[layers]]
+  name = "git"
+
+[[custom_plugins]]
+  name = 'rhysd/committia.vim'
+  on_path = 'COMMIT_EDITMSG'
+  merged = false
+
+[[layers]]
+  name = "tmux"
+  tmux_navigator_modifier = 'alt'
+
+
+[[layers]]
+  name = "sudo"
+
+[[layers]]
+  name = "incsearch"
+
+# [[custom_plugins]]
+  # name = 'mbbill/undotree'
+  # on_cmd = 'UndotreeToggle'
+  # merged = false
+
+# [[custom_plugins]]
+  # name = 'neilagabriel/vim-geeknote'
+  # on_cmd = 'Geeknote'
+  # merged = false
+
+
+########## ------------- Development
+
+# Enable autocomplete layer
+[[layers]]
+  name = 'autocomplete'
+  auto-completion-return-key-behavior = "complete"
+  auto-completion-tab-key-behavior = "smart"
+  auto-completion-complete-with-key-sequence = "jk"
+#M-/ for snippets
+
+[[layers]]
+  name = "checkers"
+
+[[layers]]
+name = "lsp"
+filetypes = [
+    "rust",
+    # "python",
+    "cpp",
+    "cuda",
+    "c",
+  ]
+  [layers.override_cmd]
+    rust = ["rustup", "run", "stable", "rls"]
+    c = ['ccls', '--log-file=/tmp/cc.log']
+    cpp = ['ccls', '--log-file=/tmp/cc.log']
+    cuda = ['ccls', '--log-file=/tmp/cc.log']
+    objc = ['ccls', '--log-file=/tmp/cc.log']
+
+# [[custom_plugins]]
+#   name = 'autozimu/LanguageClient-neovim'
+#   ref = 'next'
+#   if = "has('python3')"
+#   build = 'bash install.sh'
+# # needconf = '1'
+#   merged = false
+
+# [[custom_plugins]]
+#   name = 'tbodt/deoplete-tabnine'
+#   do = './install.sh'
+#   # on_ft = 'rust'
+#   merged = false
+
+[[layers]]
+  name = "debug"
+
+# [[layers]]
+#   name = 'tags'
+
+
+################### -------------- Languages
+
+[[layers]]
+name = "lang#c"
+  clang_executable = "/usr/bin/clang"
+  libclang_path = "/usr/lib64/libclang.so"
+
+[[layers]]
+name = "lang#rust"
+
+[[layers]]
+name = "lang#latex"
+
+[[layers]]
+name = "lang#markdown"
+
+[[layers]]
+name = "lang#python"
+
+[[layers]]
+name = "lang#sh"
+
+[[layers]]
+name = "lang#vim"
+
+[[custom_plugins]]
+  name = 'kergoth/vim-bitbake'
+  on_ft = 'bitbake'
+  merged = false 
+
+[[custom_plugins]]
+  name = 'martinda/Jenkinsfile-vim-syntax'
+  on_ft = 'Jenkinsfile'
+  merged = false 
+
+[[custom_plugins]]
+  name = 'vim-pandoc/vim-pandoc'
+  # on_ft = 'pandoc'
+  merged = false 
+
+[[custom_plugins]]
+  name = 'vim-pandoc/vim-pandoc-syntax'
+  # on_ft = 'pandoc'
+  merged = false 
+
