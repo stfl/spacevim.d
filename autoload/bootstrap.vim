@@ -79,10 +79,10 @@ func! bootstrap#after() abort
   " have x (removes single character) not go into the default registry
   nnoremap x "_x
   " Make X an operator that removes without placing text in the default registry
-  nmap X "_d
-  nmap XX "_dd
-  vmap X "_d
-  vmap x "_d
+  " nmap X "_d
+  " nmap XX "_dd
+  " vmap X "_d
+  " vmap x "_d
 
   " Don't yank to default register when changing something
   nnoremap c "xc
@@ -100,19 +100,17 @@ func! bootstrap#after() abort
   nnoremap Y y$
 
   " Keep the cursor in place while joining lines, (Enter at cursor splits lines)
-  nnoremap J mzJ`z
+  " nnoremap J mzJ`z
 
   " }}}
 
   " ALE config {{{
 
   let g:ale_linters = {
-\   'c': ['ccls', 'clangd', 'clangtidy',
-\         'cppcheck', 'cquery', 'flawfinder'],
-\   'cpp': ['ccls', 'clangcheck', 'clangd',
-\           'clangtidy', 'clazy', 'cppcheck',
-\           'cpplint', 'cquery', 'flawfinder']
+\   'c': ['ccls', 'clangtidy'],
+\   'cpp': ['ccls', 'clangtidy'] 
 \}
+
 " 'clang',
   let g:ale_c_parse_compile_commands = 1
   let g:ale_cpp_parse_compile_commands = 1
@@ -128,6 +126,17 @@ func! bootstrap#after() abort
 
   " source my full goyo config
   let g:limelight_conceal_ctermfg="DarkGray"
-  source "~/.SpaceVim.d/goyo.vim"
+  source ~/.SpaceVim.d/goyo.vim
+
+  " set diffopt += vertical
+  set diffopt=filler,internal,vertical,iwhite  " ignore whitespace
+  " set diffopt+=vert
+
+  " let g:coc_enable_locationlist = 0
+
+  set updatetime=300
+  " Better display for messages
+  " set cmdheight=2
 endf
+
 

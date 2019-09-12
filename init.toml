@@ -9,6 +9,7 @@
 # All SpaceVim option below [option] section
 [options]
   colorscheme = "NeoSolarized"
+  # colorscheme = "gruvbox"
   background = "dark"
 
   enable_guicolors = false
@@ -22,8 +23,8 @@
 
   auto_disable_touchpad = false
 
-  # filemanager = "nerdtree"
-  enable_vimfiler_gitstatus = true
+  filemanager = "defx"
+  # enable_vimfiler_gitstatus = true
 
   bootstrap_before = "myconfig#before"
   bootstrap_before = "bootstrap#before"
@@ -31,7 +32,10 @@
   # bootstrap_after  = "myutil#after"
 
   enable_neomake = false
-  enable_ale = true
+  enable_ale = false
+
+  autocomplete_method = "coc"
+  snippet_engine = "ultisnips"
 
   disabled_plugins = [
     # "LanguageClient-neovim",
@@ -42,9 +46,13 @@
     "onedark.vim",
     "tabular",
     "neco-look",
+    "denite.nvim",
     "Clamp",
+    "syntastic",
+    # "neosnippet.vim",
+    # "vim-gitgutter"
+    # "ale",
   ]
-
 
 ######## ------------- Basics
 
@@ -57,27 +65,32 @@
 [[custom_plugins]]
   name = 'junegunn/vim-easy-align'
   on_map = '<Plug>(LiveEasyAlign)'
-            # '<Plug>(EasyAlign)']
+            #, '<Plug>(EasyAlign)']
   merged = false
 
 [[layers]]
   name = 'colorscheme'
 
+[[custom_plugins]]
+  name = "SpaceVim/denite.nvim"
+  merged = false
+  loadconf = true
+
 [[layers]]
   name = 'denite'
 
-[[custom_plugins]]
-  name = 'raghur/fruzzy'
-  hook_post_update = 'call fruzzy#install()'
-  on_cmd = 'Denite'
-  merged = false
+# [[custom_plugins]]
+#   name = 'raghur/fruzzy'
+#   hook_post_update = 'call fruzzy#install()'
+#   on_cmd = 'Denite'
+#   merged = false
 
-[[custom_plugins]]
-  name = 'ujihisa/neco-look'
-  if = "executable('look')"
-  # on_if = '&spell'
-  on_ft = ['markdown', 'pandoc', 'tex', 'latex', 'text']
-  merged = false
+# [[custom_plugins]]
+#   name = 'ujihisa/neco-look'
+#   if = "executable('look')"
+#   # on_if = '&spell'
+#   on_ft = ['markdown', 'pandoc', 'tex', 'latex', 'text']
+#   merged = false
 
 
 # [[layers]]
@@ -106,17 +119,43 @@
   name = "tmux"
   tmux_navigator_modifier = 'alt'
 
-
 [[layers]]
   name = "sudo"
 
 [[layers]]
   name = "incsearch"
 
-# [[custom_plugins]]
-  # name = 'mbbill/undotree'
-  # on_cmd = 'UndotreeToggle'
-  # merged = false
+[[layers]]
+  name = "operator"
+
+[[custom_plugins]]
+  name = 'AndrewRadev/linediff.vim'
+  on_cmd = 'Linediff'
+  merged = false
+
+[[custom_plugins]]
+  name = 'mbbill/undotree'
+  on_cmd = 'UndotreeToggle'
+  merged = false
+
+[[custom_plugins]]
+  name = 'dpelle/vim-LanguageTool' 
+  merged = false
+  on_cmd = 'LanguageToolCheck'
+  hook_source = '''
+    let g:languagetool_jar = '/usr/share/java/LanguageTool/languagetool-commandline.jar'
+    let g:languagetool_lang = 'en-US'
+    let g:languagetool_disable_rules = 'DASH_RULE,EN_QUOTES,WHITESPACE_RULE'
+    '''
+
+[[custom_plugins]]
+  name = 'sobh/vim-mql4' 
+  merged = false
+  on_ft = 'mql4'
+
+[[custom_plugins]]
+  name = 'tpope/vim-dispatch' 
+  merged = false
 
 # [[custom_plugins]]
   # name = 'neilagabriel/vim-geeknote'
@@ -138,6 +177,9 @@
   name = "checkers"
 
 [[layers]]
+  name = "format"
+
+[[layers]]
 name = "lsp"
 filetypes = [
     "rust",
@@ -146,12 +188,15 @@ filetypes = [
     "cuda",
     "c",
   ]
+  auto-completion-delay = 500
+  auto-completion-complete-with-key-sequence = "nil"
+  auto-completion-complete-with-key-sequence-delay = 0.1
   [layers.override_cmd]
-    rust = ["rustup", "run", "stable", "rls"]
-    c = ['ccls', '--log-file=/tmp/cc.log']
-    cpp = ['ccls', '--log-file=/tmp/cc.log']
-    cuda = ['ccls', '--log-file=/tmp/cc.log']
-    objc = ['ccls', '--log-file=/tmp/cc.log']
+    # rust = ["rustup", "run", "stable", "rls"]
+    c    = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
+    cpp  = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
+    cuda = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
+    objc = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
 
 # [[custom_plugins]]
 #   name = 'autozimu/LanguageClient-neovim'
@@ -199,6 +244,12 @@ name = "lang#sh"
 [[layers]]
 name = "lang#vim"
 
+# [[layers]]
+# name = "lang#json"
+
+[[layers]]
+name = "lang#dockerfile"
+
 [[custom_plugins]]
   name = 'kergoth/vim-bitbake'
   on_ft = 'bitbake'
@@ -213,9 +264,51 @@ name = "lang#vim"
   name = 'vim-pandoc/vim-pandoc'
   # on_ft = 'pandoc'
   merged = false 
+  hook_source = '''
+    let g:pandoc#command#use_message_buffers = 1
+    '''
 
 [[custom_plugins]]
   name = 'vim-pandoc/vim-pandoc-syntax'
-  # on_ft = 'pandoc'
+  on_ft = 'pandoc'
   merged = false 
 
+[[custom_plugins]]
+  name = "daidodo/DoxygenToolkit.vim"
+  merged = false
+  on_ft = ["c", "cpp"]
+  loadconf = true
+  hook_source = '''
+    let g:DoxygenToolkit_briefTag_pre = '\brief '
+    let g:DoxygenToolkit_paramTag_pre = '\param '
+    let g:DoxygenToolkit_templateParamTag_pre = '\tparam '
+    let g:DoxygenToolkit_throwTag_pre = '\throw '
+    let g:DoxygenToolkit_returnTag = '\returns '
+    let g:DoxygenToolkit_authorTag = '\author '
+    let g:DoxygenToolkit_dateTag = '\date '
+    let g:DoxygenToolkit_blockTag = '\name '
+    let g:DoxygenToolkit_classTag = '\class '
+    let g:DoxygenToolkit_fileTag = '\file '
+    let g:DoxygenToolkit_putFilename = 1
+    let g:DoxygenToolkit_versionTag = '\version '
+    let g:DoxygenToolkit_interCommentTag = '* '
+    let g:DoxygenToolkit_interCommentBlock = '* '
+    let g:DoxygenToolkit_startCommentBlock = '/************************************************************************** '
+    let g:DoxygenToolkit_endCommentBlock = '**************************************************************************/'
+    let g:DoxygenToolkit_authorName = 'Stefan Lendl'
+    let g:DoxygenToolkit_authorMail = 'sll@mission-embedded.com'
+    let g:DoxygenToolkit_commentType = 'C'
+    let g:DoxygenToolkit_licenseTag  = '  COPYRIGHT: Mission Embedded GmbH - All rights reserved.<N>'
+    let g:DoxygenToolkit_licenseTag .= '             Registered with Commercial Court Vienna,<N>'
+    let g:DoxygenToolkit_licenseTag .= '             reg.no. FN 410566 z <N>'
+    let g:DoxygenToolkit_licenseTag .= '    PROJECT: <N>'
+    let g:DoxygenToolkit_licenseTag .= '     AUTHOR: <AUTHOR> <MAIL><N>'
+    let g:DoxygenToolkit_licenseTag .= '  SUBSITUTE: '
+    '''
+
+    # let g:DoxygenToolkit_compactOneLineDoc = 'yes'
+    # let g:DoxygenToolkit_blockHeader = ''
+    # let g:DoxygenToolkit_blockFooter = ''
+#
+    # let g:DoxygenToolkit_startCommentTag = '/************************************************************************** '
+    # let g:DoxygenToolkit_endCommentTag = '**************************************************************************/'
