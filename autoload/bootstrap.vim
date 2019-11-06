@@ -16,23 +16,23 @@ func! bootstrap#before() abort
 
   " }}}
   " SpaceVim Wildfire mapping
-  call SpaceVim#custom#SPC('map',  ['<Space>'], '<Plug>(wildfire-fuel)', 'select and expand to closest regon', 0)
-  call SpaceVim#custom#SPC('vmap', ['<C-Space>'], '<Plug>(wildfire-water)', 'shrink selected regon', 0)
-  call SpaceVim#custom#SPC('map',  ['x', 'w'], '<Plug>(wildfire-fuel)', 'select and expand to closest regon', 0)
-  call SpaceVim#custom#SPC('vmap', ['x', 'W'], '<Plug>(wildfire-water)', 'shrink selected regon', 0)
+  " call SpaceVim#custom#SPC('map',  ['<Space>'], '<Plug>(wildfire-fuel)', 'select and expand to closest regon', 0)
+  " call SpaceVim#custom#SPC('vmap', ['<C-Space>'], '<Plug>(wildfire-water)', 'shrink selected regon', 0)
+  " call SpaceVim#custom#SPC('map',  ['x', 'w'], '<Plug>(wildfire-fuel)', 'select and expand to closest regon', 0)
+  " call SpaceVim#custom#SPC('vmap', ['x', 'W'], '<Plug>(wildfire-water)', 'shrink selected regon', 0)
 
-  call SpaceVim#custom#SPC('nnoremap', ['x', 'a', '<Space>'], 'Tabularize / /', "align region at ' '", 1)
+  " call SpaceVim#custom#SPC('nnoremap', ['x', 'a', '<Space>'], 'Tabularize / /', "align region at ' '", 1)
 
   " Additional Key Bindings {{{
   nnoremap ZAQ :qa!<CR>
   nnoremap ZAZ :wqa<CR>
 
-  call SpaceVim#custom#SPC('xmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive', 0)
-  call SpaceVim#custom#SPC('nmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive operator', 0)
+  " call SpaceVim#custom#SPC('xmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive', 0)
+  " call SpaceVim#custom#SPC('nmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive operator', 0)
 
   " call SpaceVim#custom#SPC('nnoremap', ['t', 'u'], 'UndotreeToggle', 'toggle UndoTree', 1)
 
-  call SpaceVim#custom#SPC('nnoremap', ['x', 'a', '<Space>'], 'call setqflist([])', "clear quickfix list", 1)
+  " call SpaceVim#custom#SPC('nnoremap', ['q', 'c', '<Space>'], 'call setqflist([])', "clear quickfix list", 1)
 
   " }}}
   " fruzzy
@@ -106,37 +106,36 @@ func! bootstrap#after() abort
 
   " ALE config {{{
 
-  let g:ale_linters = {
-\   'c': ['ccls', 'clangtidy'],
-\   'cpp': ['ccls', 'clangtidy'] 
-\}
+"   let g:ale_linters = {
+" \   'c': ['ccls', 'clangtidy'],
+" \   'cpp': ['ccls', 'clangtidy']
+" \}
 
 " 'clang',
-  let g:ale_c_parse_compile_commands = 1
-  let g:ale_cpp_parse_compile_commands = 1
+  " let g:ale_c_parse_compile_commands = 1
+  " let g:ale_cpp_parse_compile_commands = 1
   " let g:ale_set_loclist = 0
   " let g:ale_set_quickfix = 1
 
   " }}}
 
-  let $RUST_BACKTRACE = 1
-  let g:LanguageClient_loggingLevel = "DEBUG"
-  let g:LanguageClient_loggingFile = "/tmp/lsp_client.log"
-  let g:LanguageClient_serverStderr = "/tmp/lsp_server.log"
+  " let $RUST_BACKTRACE = 1
+  " let g:LanguageClient_loggingLevel = "DEBUG"
+  " let g:LanguageClient_loggingFile = "/tmp/lsp_client.log"
+  " let g:LanguageClient_serverStderr = "/tmp/lsp_server.log"
 
   " source my full goyo config
-  let g:limelight_conceal_ctermfg="DarkGray"
-  source ~/.SpaceVim.d/goyo.vim
+  " let g:limelight_conceal_ctermfg="DarkGray"
+  " source ~/.SpaceVim.d/goyo.vim
 
-  " set diffopt += vertical
-  set diffopt=filler,internal,vertical,iwhite  " ignore whitespace
-  " set diffopt+=vert
+  set diffopt=filler,internal,vertical,iwhite,algorithm:patience
 
-  " let g:coc_enable_locationlist = 0
-
+  let g:coc_enable_locationlist = 0
   set updatetime=300
+
+  " set noautoread
   " Better display for messages
-  " set cmdheight=2
+  " set cmdheight=1
 endf
 
 

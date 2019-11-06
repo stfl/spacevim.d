@@ -1,53 +1,57 @@
 #=============================================================================
-# dark_powered.toml --- dark powered configuration example for SpaceVim
-# Copyright (c) 2016-2017 Wang Shidong & Contributors
-# Author: Wang Shidong < wsdjeg at 163.com >
-# URL: https://spacevim.org
-# License: GPLv3
+# Copyright (c) 2016-2019 Stefan Lendl
+# Author: Stefan Lendl
 #=============================================================================
 
 # All SpaceVim option below [option] section
 [options]
   colorscheme = "NeoSolarized"
-  # colorscheme = "gruvbox"
   background = "dark"
 
-  enable_guicolors = false
-# Disable statusline separator, if you want to use other value, please
-# install nerd fonts
+# disable if terminal does not support true color >> tmux!!
+  # enable_guicolors = false
+  enable_guicolors = true
+  # Disable statusline separator, if you want to use other value, please
+  # install nerd fonts
   statusline_separator = "arrow"
   statusline_inactive_separator = "arrow"
+  statusline_unicode_symbols = true
+
   buffer_index_type = 4
-  enable_tabline_filetype_icon = true
-  enable_statusline_display_mode = true
+  window_index_type = 3
+  enable_tabline_ft_icon = true
+  enable_statusline_mode = true
+  auto_disable_touchpad = true
 
-  auto_disable_touchpad = false
-
-  filemanager = "defx"
-  # enable_vimfiler_gitstatus = true
-
-  bootstrap_before = "myconfig#before"
+  vimcompatible = false
   bootstrap_before = "bootstrap#before"
   bootstrap_after  = "bootstrap#after"
-  # bootstrap_after  = "myutil#after"
 
   enable_neomake = false
-  enable_ale = false
+  # enable_ale = false
 
+  # autocomplete_method = "deoplete"
   autocomplete_method = "coc"
-  snippet_engine = "ultisnips"
+  # snippet_engine = "ultisnips"
 
   disabled_plugins = [
-    # "LanguageClient-neovim",
     "vim-emoji",
     "gruvbox",
     "molokai",
-    "nord-vim",
     "onedark.vim",
-    "tabular",
-    "neco-look",
-    "denite.nvim",
-    "Clamp",
+    "jellybeans.vim",
+    "vim-one",
+    "nord-vim",
+    "vim-hybrid",
+    "vim-material",
+    "srcery-vim",
+    "palenight.vim",
+    "vim-startify",
+
+    # "tabular",
+    # "neco-look",
+    # "denite.nvim",
+    # "Clamp",
     "syntastic",
     # "neosnippet.vim",
     # "vim-gitgutter"
@@ -62,44 +66,14 @@
 [[layers]]
   name = "edit"
 
-[[custom_plugins]]
-  name = 'junegunn/vim-easy-align'
-  on_map = '<Plug>(LiveEasyAlign)'
-            #, '<Plug>(EasyAlign)']
-  merged = false
-
 [[layers]]
   name = 'colorscheme'
-
-[[custom_plugins]]
-  name = "SpaceVim/denite.nvim"
-  merged = false
-  loadconf = true
 
 [[layers]]
   name = 'denite'
 
-# [[custom_plugins]]
-#   name = 'raghur/fruzzy'
-#   hook_post_update = 'call fruzzy#install()'
-#   on_cmd = 'Denite'
-#   merged = false
-
-# [[custom_plugins]]
-#   name = 'ujihisa/neco-look'
-#   if = "executable('look')"
-#   # on_if = '&spell'
-#   on_ft = ['markdown', 'pandoc', 'tex', 'latex', 'text']
-#   merged = false
-
-
 # [[layers]]
   # name = 'fzf'
-
-[[layers]]
-  name = 'shell'
-  default_position = 'bottom'
-  default_height = 30
 
 [[layers]]
   name = 'tools'
@@ -111,57 +85,48 @@
   name = "git"
 
 [[custom_plugins]]
+  name = 'chrisbra/vim-diff-enhanced'
+  on_cmd = 'EnhancedDiff'
+  merged = false
+
+
+[[custom_plugins]]
   name = 'rhysd/committia.vim'
   on_path = 'COMMIT_EDITMSG'
   merged = false
 
-[[layers]]
-  name = "tmux"
-  tmux_navigator_modifier = 'alt'
+# [[layers]]
+  # name = "tmux"
+  # tmux_navigator_modifier = 'alt'
 
-[[layers]]
-  name = "sudo"
+# [[layers]]
+  # name = "sudo"
 
 [[layers]]
   name = "incsearch"
 
-[[layers]]
-  name = "operator"
+# [[layers]]
+  # name = "operator"
 
 [[custom_plugins]]
   name = 'AndrewRadev/linediff.vim'
   on_cmd = 'Linediff'
   merged = false
 
-[[custom_plugins]]
-  name = 'mbbill/undotree'
-  on_cmd = 'UndotreeToggle'
-  merged = false
-
-[[custom_plugins]]
-  name = 'dpelle/vim-LanguageTool' 
-  merged = false
-  on_cmd = 'LanguageToolCheck'
-  hook_source = '''
-    let g:languagetool_jar = '/usr/share/java/LanguageTool/languagetool-commandline.jar'
-    let g:languagetool_lang = 'en-US'
-    let g:languagetool_disable_rules = 'DASH_RULE,EN_QUOTES,WHITESPACE_RULE'
-    '''
-
-[[custom_plugins]]
-  name = 'sobh/vim-mql4' 
-  merged = false
-  on_ft = 'mql4'
-
-[[custom_plugins]]
-  name = 'tpope/vim-dispatch' 
-  merged = false
-
 # [[custom_plugins]]
-  # name = 'neilagabriel/vim-geeknote'
-  # on_cmd = 'Geeknote'
+  # name = 'mbbill/undotree'
+  # on_cmd = 'UndotreeToggle'
   # merged = false
 
+# [[custom_plugins]]
+  # name = 'dpelle/vim-LanguageTool'
+  # merged = false
+  # on_cmd = 'LanguageToolCheck'
+  # hook_source = '''
+    # let g:languagetool_jar = '/usr/share/java/LanguageTool/languagetool-commandline.jar'
+    # let g:languagetool_lang = 'en-US'
+    # let g:languagetool_disable_rules = 'DASH_RULE,EN_QUOTES,WHITESPACE_RULE'
+    # '''
 
 ########## ------------- Development
 
@@ -173,8 +138,8 @@
   auto-completion-complete-with-key-sequence = "jk"
 #M-/ for snippets
 
-[[layers]]
-  name = "checkers"
+# [[layers]]
+  # name = "checkers"
 
 [[layers]]
   name = "format"
@@ -188,123 +153,109 @@ filetypes = [
     "cuda",
     "c",
   ]
-  auto-completion-delay = 500
+  auto-completion-delay = 300
   auto-completion-complete-with-key-sequence = "nil"
   auto-completion-complete-with-key-sequence-delay = 0.1
   [layers.override_cmd]
-    # rust = ["rustup", "run", "stable", "rls"]
+    rust = ["rustup", "run", "stable", "rls"]
     c    = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     cpp  = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     cuda = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     objc = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
 
-# [[custom_plugins]]
-#   name = 'autozimu/LanguageClient-neovim'
-#   ref = 'next'
-#   if = "has('python3')"
-#   build = 'bash install.sh'
-# # needconf = '1'
-#   merged = false
-
-# [[custom_plugins]]
-#   name = 'tbodt/deoplete-tabnine'
-#   do = './install.sh'
-#   # on_ft = 'rust'
-#   merged = false
-
-[[layers]]
-  name = "debug"
+# [[layers]]
+  # name = "debug"
 
 # [[layers]]
-#   name = 'tags'
+#   name = 'gtags'
 
 
 ################### -------------- Languages
 
-[[layers]]
-name = "lang#c"
-  clang_executable = "/usr/bin/clang"
-  libclang_path = "/usr/lib64/libclang.so"
-
-[[layers]]
-name = "lang#rust"
-
-[[layers]]
-name = "lang#latex"
-
-[[layers]]
-name = "lang#markdown"
-
-[[layers]]
-name = "lang#python"
-
-[[layers]]
-name = "lang#sh"
-
-[[layers]]
-name = "lang#vim"
+# [[layers]]
+# name = "lang#c"
+#   clang_executable = "/usr/bin/clang"
+#   libclang_path = "/usr/lib64/libclang.so"
 
 # [[layers]]
-# name = "lang#json"
+  # name = "lang#rust"
 
-[[layers]]
-name = "lang#dockerfile"
+# [[layers]]
+# name = "lang#latex"
 
-[[custom_plugins]]
-  name = 'kergoth/vim-bitbake'
-  on_ft = 'bitbake'
-  merged = false 
+# [[layers]]
+  # name = "lang#markdown"
 
-[[custom_plugins]]
-  name = 'martinda/Jenkinsfile-vim-syntax'
-  on_ft = 'Jenkinsfile'
-  merged = false 
+# [[layers]]
+  # name = "lang#python"
 
-[[custom_plugins]]
-  name = 'vim-pandoc/vim-pandoc'
+# [[layers]]
+  # name = "lang#sh"
+
+# [[layers]]
+  # name = "lang#vim"
+
+# [[layers]]
+  # name = "lang#json"
+
+# [[layers]]
+  # name = "lang#dockerfile"
+
+# [[custom_plugins]]
+  # name = 'kergoth/vim-bitbake'
+  # on_ft = 'bitbake'
+  # merged = false
+
+# [[custom_plugins]]
+  # name = 'martinda/Jenkinsfile-vim-syntax'
+  # on_ft = 'Jenkinsfile'
+  # merged = false
+
+# [[custom_plugins]]
+#   name = 'vim-pandoc/vim-pandoc'
+#   # on_ft = 'pandoc'
+#   merged = false
+#   hook_source = '''
+#     let g:pandoc#command#use_message_buffers = 1
+#     '''
+
+# [[custom_plugins]]
+  # name = 'vim-pandoc/vim-pandoc-syntax'
   # on_ft = 'pandoc'
-  merged = false 
-  hook_source = '''
-    let g:pandoc#command#use_message_buffers = 1
-    '''
+  # merged = false
 
-[[custom_plugins]]
-  name = 'vim-pandoc/vim-pandoc-syntax'
-  on_ft = 'pandoc'
-  merged = false 
-
-[[custom_plugins]]
-  name = "daidodo/DoxygenToolkit.vim"
-  merged = false
-  on_ft = ["c", "cpp"]
-  loadconf = true
-  hook_source = '''
-    let g:DoxygenToolkit_briefTag_pre = '\brief '
-    let g:DoxygenToolkit_paramTag_pre = '\param '
-    let g:DoxygenToolkit_templateParamTag_pre = '\tparam '
-    let g:DoxygenToolkit_throwTag_pre = '\throw '
-    let g:DoxygenToolkit_returnTag = '\returns '
-    let g:DoxygenToolkit_authorTag = '\author '
-    let g:DoxygenToolkit_dateTag = '\date '
-    let g:DoxygenToolkit_blockTag = '\name '
-    let g:DoxygenToolkit_classTag = '\class '
-    let g:DoxygenToolkit_fileTag = '\file '
-    let g:DoxygenToolkit_putFilename = 1
-    let g:DoxygenToolkit_versionTag = '\version '
-    let g:DoxygenToolkit_interCommentTag = '* '
-    let g:DoxygenToolkit_interCommentBlock = '* '
-    let g:DoxygenToolkit_startCommentBlock = '/************************************************************************** '
-    let g:DoxygenToolkit_endCommentBlock = '**************************************************************************/'
-    let g:DoxygenToolkit_authorName = 'Stefan Lendl'
-    let g:DoxygenToolkit_authorMail = 'sll@mission-embedded.com'
-    let g:DoxygenToolkit_commentType = 'C'
-    let g:DoxygenToolkit_licenseTag  = '  COPYRIGHT: Mission Embedded GmbH - All rights reserved.<N>'
-    let g:DoxygenToolkit_licenseTag .= '             Registered with Commercial Court Vienna,<N>'
-    let g:DoxygenToolkit_licenseTag .= '             reg.no. FN 410566 z <N>'
-    let g:DoxygenToolkit_licenseTag .= '    PROJECT: <N>'
-    let g:DoxygenToolkit_licenseTag .= '     AUTHOR: <AUTHOR> <MAIL><N>'
-    let g:DoxygenToolkit_licenseTag .= '  SUBSITUTE: '
-    '''
+# [[custom_plugins]]
+  # name = "daidodo/DoxygenToolkit.vim"
+  # merged = false
+  # on_ft = ["c", "cpp"]
+  # loadconf = true
+  # hook_source = '''
+    # let g:DoxygenToolkit_briefTag_pre = '\brief '
+    # let g:DoxygenToolkit_paramTag_pre = '\param '
+    # let g:DoxygenToolkit_templateParamTag_pre = '\tparam '
+    # let g:DoxygenToolkit_throwTag_pre = '\throw '
+    # let g:DoxygenToolkit_returnTag = '\returns '
+    # let g:DoxygenToolkit_authorTag = '\author '
+    # let g:DoxygenToolkit_dateTag = '\date '
+    # let g:DoxygenToolkit_blockTag = '\name '
+    # let g:DoxygenToolkit_classTag = '\class '
+    # let g:DoxygenToolkit_fileTag = '\file '
+    # let g:DoxygenToolkit_putFilename = 1
+    # let g:DoxygenToolkit_versionTag = '\version '
+    # let g:DoxygenToolkit_interCommentTag = '* '
+    # let g:DoxygenToolkit_interCommentBlock = '* '
+    # let g:DoxygenToolkit_startCommentBlock = '/************************************************************************** '
+    # let g:DoxygenToolkit_endCommentBlock = '**************************************************************************/'
+    # let g:DoxygenToolkit_authorName = 'Stefan Lendl'
+    # let g:DoxygenToolkit_authorMail = 'sll@mission-embedded.com'
+    # let g:DoxygenToolkit_commentType = 'C'
+    # let g:DoxygenToolkit_licenseTag  = '  COPYRIGHT: Mission Embedded GmbH - All rights reserved.<N>'
+    # let g:DoxygenToolkit_licenseTag .= '             Registered with Commercial Court Vienna,<N>'
+    # let g:DoxygenToolkit_licenseTag .= '             reg.no. FN 410566 z <N>'
+    # let g:DoxygenToolkit_licenseTag .= '    PROJECT: <N>'
+    # let g:DoxygenToolkit_licenseTag .= '     AUTHOR: <AUTHOR> <MAIL><N>'
+    # let g:DoxygenToolkit_licenseTag .= '  SUBSITUTE: '
+    # '''
 
     # let g:DoxygenToolkit_compactOneLineDoc = 'yes'
     # let g:DoxygenToolkit_blockHeader = ''
