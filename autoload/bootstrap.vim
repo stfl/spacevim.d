@@ -11,8 +11,8 @@ func! bootstrap#before() abort
   " pyenv virtualenv 3.4.4 py3nvim
   " pyenv activate py3nvim
   " pip install pynvim
-  let g:python3_host_prog = '/home/sll/.pyenv/versions/py3nvim/bin/python'
-  let g:python_host_prog  = '/home/sll/.pyenv/versions/py2nvim/bin/python'
+  let g:python3_host_prog = "$HOME/.pyenv/versions/py3nvim/bin/python"
+  let g:python_host_prog  = "$HOME/.pyenv/versions/py2nvim/bin/python"
 
   " }}}
   " SpaceVim Wildfire mapping
@@ -24,8 +24,6 @@ func! bootstrap#before() abort
   " call SpaceVim#custom#SPC('nnoremap', ['x', 'a', '<Space>'], 'Tabularize / /', "align region at ' '", 1)
 
   " Additional Key Bindings {{{
-  nnoremap ZAQ :qa!<CR>
-  nnoremap ZAZ :wqa<CR>
 
   " call SpaceVim#custom#SPC('xmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive', 0)
   " call SpaceVim#custom#SPC('nmap', ['x', 'a'], '<Plug>(LiveEasyAlign)', 'align interactive operator', 0)
@@ -102,8 +100,10 @@ func! bootstrap#after() abort
   " Keep the cursor in place while joining lines, (Enter at cursor splits lines)
   " nnoremap J mzJ`z
 
-  " }}}
+  nnoremap ZAQ :qa!<CR>
+  nnoremap ZAZ :wqa<CR>
 
+  " }}}
   " ALE config {{{
 
 "   let g:ale_linters = {
@@ -118,11 +118,6 @@ func! bootstrap#after() abort
   " let g:ale_set_quickfix = 1
 
   " }}}
-
-  " let $RUST_BACKTRACE = 1
-  " let g:LanguageClient_loggingLevel = "DEBUG"
-  " let g:LanguageClient_loggingFile = "/tmp/lsp_client.log"
-  " let g:LanguageClient_serverStderr = "/tmp/lsp_server.log"
 
   " source my full goyo config
   " let g:limelight_conceal_ctermfg="DarkGray"
