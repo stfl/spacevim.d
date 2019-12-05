@@ -174,6 +174,21 @@ filetypes = [
 [[layers]]
   name = "lang#rust"
 
+[[layers]]
+  name = "lang#php"
+
+[[custom_plugins]]
+  name = 'elythyr/php-foldexpr.vim'
+  on_ft = 'php'
+  merged = false
+  loadconf = true
+  hook_source = '''
+    let b:phpfold_use = 1
+    let b:phpfold_group_iftry = 0
+    let b:phpfold_text_right_lines = 1
+    '''
+  
+
 # [[layers]]
 # name = "lang#latex"
 
