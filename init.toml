@@ -47,6 +47,7 @@
     # "srcery-vim",
     # "palenight.vim",
     "vim-startify",
+    "php-language-server",
     # "syntastic",
   ]
 
@@ -142,13 +143,14 @@ filetypes = [
 #     # "python",
 #     "cpp",
 #     "cuda",
-#     "c",
+    "php",
   ]
   auto-completion-delay = 300
   auto-completion-complete-with-key-sequence = "nil"
   auto-completion-complete-with-key-sequence-delay = 0.1
-  # [layers.override_cmd]
-    # rust = ["/bin/true"]
+  [layers.override_cmd]
+    rust = ["/bin/true"]
+    php = ["/bin/true"]
     # c    = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     # cpp  = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     # cuda = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']

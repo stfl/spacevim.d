@@ -126,6 +126,8 @@ func! bootstrap#after() abort
   set diffopt=filler,internal,vertical,iwhite,algorithm:patience
 
   let g:coc_enable_locationlist = 0
+  let g:coc_config_home = '$HOME/.SpaceVim.d'
+
   set updatetime=300
 
   " set noautoread
