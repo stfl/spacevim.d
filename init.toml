@@ -94,8 +94,8 @@
 # [[layers]]
   # name = "sudo"
 
-[[layers]]
-  name = "incsearch"
+# [[layers]]
+  # name = "incsearch"
 
 [[layers]]
   name = "operator"
@@ -143,14 +143,15 @@ filetypes = [
 #     # "python",
 #     "cpp",
 #     "cuda",
-    "php",
+#     "php",
+    "c",
   ]
   auto-completion-delay = 300
   auto-completion-complete-with-key-sequence = "nil"
   auto-completion-complete-with-key-sequence-delay = 0.1
-  [layers.override_cmd]
-    rust = ["/bin/true"]
-    php = ["/bin/true"]
+#[layers.override_cmd]
+#    rust = ["/bin/true"]
+#    php = ["/bin/true"]
     # c    = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     # cpp  = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
     # cuda = ['ccls', '--log-file=/tmp/ccls.log', '-v=1']
@@ -232,7 +233,7 @@ filetypes = [
 
 [[custom_plugins]]
   name = 'rupurt/vim-mql5'
-  on_ft = 'mql6'
+  on_ft = 'mql5'
   merged = false
 
 # [[custom_plugins]]
