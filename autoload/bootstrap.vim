@@ -123,12 +123,9 @@ func! bootstrap#after() abort
   " let g:limelight_conceal_ctermfg="DarkGray"
   " source ~/.SpaceVim.d/goyo.vim
 
+  set pyxversion=3
+
   set diffopt=filler,internal,vertical,iwhite,algorithm:patience
-
-  let g:coc_enable_locationlist = 0
-  let g:coc_config_home = '$HOME/.SpaceVim.d'
-
-  set updatetime=300
 
   " set noautoread
   " Better display for messages
