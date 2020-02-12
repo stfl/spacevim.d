@@ -238,6 +238,13 @@ filetypes = [
   on_ft = 'mql5'
   merged = false
 
+
+[[custom_plugins]]
+  name = 'glacambre/firenvim'
+  # on_ft = 'mql5'
+  merged = false
+  hook_post_update = 'call firenvim#install(0)'
+
 # [[custom_plugins]]
   # name = 'vim-pandoc/vim-pandoc-syntax'
   # on_ft = 'pandoc'
